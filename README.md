@@ -4,7 +4,7 @@
 
 * Activate an Anaconda environment.
 
-  * **Note** attached is the `environment.yml` file of the complete environment used if needed, this will take some to create.
+  * **Note** attached is the `environment.yml` file of the complete environment used if needed, this will take some to create so not the preferred method.
 
   * Run `conda env create -f environment.yml`
 
@@ -20,11 +20,11 @@
 
 * First step was prepping the data from each source so that dashboards can be made from them.
 
-* Each dashboard need to display the average metrics for Pace, Support, Mastery, Instructor Engagement, Instructor Clarity, and Instrutor Knowledge.
+* Each dashboard needs to display the average metrics for **Pace**, **Support**, **Mastery**, **Instructor Engagement**, **Instructor Clarity**, and **Instructor Knowledge**.
 
 ### SQL Clean
 
-* Cleaner data to work with.
+* This data was cleaner to work with.
 
 * The data cleaning process:
 
@@ -32,11 +32,13 @@
 
   * Merged the classes data with the student feedback data on the `SectionID`.
 
-  * Merged the results DataFrame with the University data on `UniversityID`.
+  * The length of the DataFrames are checked to make sure no rows are lost.
+
+  * Merged the resulting DataFrame with the University data on `UniversityID`.
 
   * Pulled out the needed columns, renamed for clarity, then exported to a new CSV.
 
-  * **Note** the new csv was exported to make the combining of the Mongo easier. Both clean up steps could take place in the same notebook if needed.
+* **Note:** The new csv was exported to make the combining of the Mongo easier. Both clean up steps could take place in the same notebook if needed.
 
 ### Mongo Clean
 
@@ -48,11 +50,13 @@
 
   * Rename columns in feedback data for clarity.
 
-  * Dropped rows with 6 missing valued in the feedback DataFrame.
+  * Dropped rows with 6 missing values in the feedback DataFrame.
 
   * Merged the class data with the feedback data left on `class_id` and right on `_id`.
 
   * Merged the resulting DataFrame with the university DataFrame left on `university_Id_x` (pandas adds both university ids on merges) and right on `_id`.
+
+  * The length of the DataFrames are checked to make sure no rows are lost.
 
   * Cleaned the resulting DataFrame with the columns needed.
 
@@ -84,11 +88,11 @@
 
   ![class group bar graph](Images/class_chart2.png)
 
-  * University bar graph had a more reasonable amount of vales so only one chart was needed.
+  * University bar graph had a more reasonable amount of values so only one chart was needed.
 
   ![university bar graph](Images/university_chart.png)
 
-* For the additional dashboard the data this time is combined used `groupby()` with and aggregation to change it from using pivot tables.
+* For the additional dashboard the data this time is combined using `groupby()` with and aggregation to change it from using pivot tables.
 
 * The rest of the charts are made using [Seaborn](https://seaborn.pydata.org/) which is a data visualization library based on matplotlib.
 
